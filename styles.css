@@ -1,0 +1,47 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.login-page, .balloon-page, .message-page {
+    text-align: center;
+}
+
+input {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.balloon {
+    width: 50px;
+    height: 70px;
+    background-color: #ff6347;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.message-page p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#trophy {
+    font-size: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+}

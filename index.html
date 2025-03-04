@@ -3,31 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Balloon Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Interactive Game & Quotes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .game-box, .quote-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            margin: 20px auto;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff77b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ff3385;
+        }
+        #secret-msg {
+            display: none;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #2ecc71;
+        }
+        input {
+            padding: 10px;
+            width: 200px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-page">
-        <input type="text" id="randomName" placeholder="Enter your name" />
-        <input type="password" id="password" placeholder="Enter password" />
-        <button onclick="checkPassword()">Enter</button>
+
+    <!-- Inspirational Quote Section -->
+    <div class="quote-box">
+        <h2>Inspirational Quote</h2>
+        <p id="quote">"Believe in yourself and all that you are."</p>
+        <button onclick="newQuote()">Get New Quote</button>
     </div>
 
-    <div class="balloon-page" style="display:none;">
-        <div class="balloon" onclick="popBalloon()"></div>
-        <div class="balloon" onclick="popBalloon()"></div>
-        <div class="balloon" onclick="popBalloon()"></div>
-        <div class="balloon" onclick="popBalloon()"></div>
-        <div class="balloon" onclick="popBalloon()"></div>
-        <div id="trophy" style="display:none;" onclick="showBirthdayMessage()">🏆</div>
+    <!-- Guess the Word by Emoji Game -->
+    <div class="game-box">
+        <h2>Guess the Word by Emoji</h2>
+        <p id="emoji-display"></p>
+        <input type="text" id="guess-input" placeholder="Enter your guess" />
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="score">Score: 0</p>
+        <button id="secret-msg" onclick="revealMessage()">Click for Secret Message</button>
     </div>
 
-    <div class="message-page" style="display:none;">
-        <p>You are so sweet! 🎉🎂🎁</p>
-        <p>Happy Birthday to you! 🎉🎂</p>
-        <p>Wishing you a wonderful day filled with joy and laughter! 💖</p>
-    </div>
+    <script>
+        // Inspirational Quotes Section
+        const quotes = [
+            "\"Believe in yourself and all that you are.\"",
+            "\"The only way to do great work is to love what you do.\"",
+            "\"Success is not the key to happiness. Happiness is the key to success.\"",
+            "\"You are stronger than you think.\"",
+            "\"Every day may not be good, but there's something good in every day.\""
+        ];
 
-    <script src="script.js"></script>
+        function newQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById("quote").textContent = quotes[randomIndex];
+        }
+
+        // Guess the Word by Emoji Game Section
+        const rounds = [
+            { emoji: "🍎🍏", word: "Apple" },
+            { emoji: "🐱🐱", word: "Cat" },
+            { emoji: "🌍🌎🌏", word: "Earth" },
+            { emoji: "🍔🍟", word: "Burger" },
+            { emoji: "🐶", word: "Dog" },
+            { emoji: "🌞", word: "Sun" },
+            { emoji: "🍕", word: "Pizza" },
+            { emoji: "🚗", word: "Car" },
+            { emoji: "🎧🎵", word: "Music" },
+            { emoji: "🌈", word: "Rainbow" }
+        ];
+
+        let currentRound = 0;
+        let score = 0;
+
+        function nextRound() {
+            if (currentRound < rounds.length) {
+                document.getElementById("emoji-display").textContent = rounds[currentRound].emoji;
+                document.getElementById("guess-input").value = "";
+            } else {
+                endGame();
+            }
+        }
+
+        function checkGuess() {
+            const guess = document.getElementById("guess-input").value.trim();
+            const correctWord = rounds[currentRound].word;
+
+            if (guess.toLowerCase() === correctWord.toLowerCase()) {
+                score++;
+            }
+
+            currentRound++;
+            document.getElementById("score").textContent = `Score: ${score}`;
+            nextRound();
+        }
+
+        function endGame() {
+            document.getElementById("emoji-display").textContent = "Game Over!";
+            document.getElementById("guess-input").style.display = "none";
+            document.getElementById("secret-msg").style.display = "block";
+
+            if (score === 10) {
+                document.getElementById("secret-msg").textContent = "You did amazing! Keep going, you're unstoppable!";
+            } else if (score >= 7) {
+                document.getElementById("secret-msg").textContent = "Great job! You're getting better every time!";
+            } else {
+                document.getElementById("secret-msg").textContent = "Nice effort! Keep practicing!";
+            }
+        }
+
+        function revealMessage() {
+            alert("You are awesome! Thanks for playing!");
+        }
+
+        // Initialize the game with the first round
+        nextRound();
+    </script>
+
 </body>
 </html>

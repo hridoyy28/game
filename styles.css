@@ -1,47 +1,75 @@
-/* styles.css */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff8f0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
     margin: 0;
-}
-
-.login-page, .balloon-page, .message-page {
+    flex-direction: column;
     text-align: center;
 }
 
-input {
-    margin: 10px;
-    padding: 10px;
-    font-size: 16px;
+h1 {
+    font-size: 36px;
+    color: #ff4081;
+    margin-bottom: 50px;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.balloon {
-    width: 50px;
-    height: 70px;
-    background-color: #ff6347;
-    border-radius: 50%;
-    margin: 10px;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.message-page p {
-    font-size: 24px;
+.question-box {
+    font-size: 20px;
     font-weight: bold;
+    color: #880e4f;
+    margin-bottom: 30px;
 }
 
-#trophy {
-    font-size: 50px;
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.button {
+    font-size: 18px;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.yes {
+    background-color: #4caf50;
+    color: white;
+}
+
+.no {
+    background-color: #f44336;
+    color: white;
+}
+
+.message-box {
+    display: none;
+    margin-top: 30px;
+    font-size: 20px;
+    padding: 20px;
+    background-color: #e1bee7;
+    border-radius: 10px;
+    color: #880e4f;
+}
+
+.hidden {
+    display: none;
+}
+
+.emoji-effect {
+    font-size: 30px;
+    color: #ff4081;
+    animation: emojiAnimation 1s infinite;
+}
+
+@keyframes emojiAnimation {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
